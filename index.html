@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Daily Betting Tips</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #ecf0f1;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: linear-gradient(135deg, #ffffff, #f1f1f1);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 90%;
+            max-width: 600px;
+            
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        #tip-container {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        #date {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        #tip {
+            font-size: 16px;
+            line-height: 1.4;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        #sport-select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            font-size: 16px;
+            background: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #sport-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .tip-details {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .tip-details:hover {
+            background: #f9f9f9;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .match-info {
+            display: flex;
+            align-items: center;
+             justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .team {
+            display: flex;
+            align-items: center;
+        }
+
+        .team i {
+            font-size: 10px;
+            margin-right: 8px;
+        }
+
+        .team-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .vs {
+            font-size: 16px;
+            font-weight: bold;
+            color: #e74c3c; /* Unique color for "vs" */
+            margin: 0 10px;
+            text-transform: uppercase; /* Optional: make it uppercase */
+            font-family: 'Arial', sans-serif; /* Ensure consistent font */
+            display: inline-block; /* Make sure it doesn't break line */
+            justify-content: center;
+        }
+
+        .competition-info {
+            font-size: 10px;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            justify-content: space-between;
+        }
+
+        .bet-option {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            
+        }
+
+        .bet-option:hover {
+            background-color: #1e8449;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Advanced Daily Betting Tips</h1>
+        </header>
+        <div class="content">
+            <select id="sport-select">
+                <option value="soccer">Soccer</option>
+                <option value="basketball">Basketball</option>
+                <option value="tennis">Tennis</option>
+                <option value="football">American Football</option>
+            </select>
+            <div id="tip-container">
+                <p id="date"></p>
+                <div id="tip"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tipElement = document.getElementById('tip');
+        const dateElement = document.getElementById('date');
+        const sportSelect = document.getElementById('sport-select');
+        const tipContainer = document.getElementById('tip-container');
+
+        const tips = {
+            soccer: [
+                {
+                    date: "21:00 - Sat 24 Aug",
+                    competition: "UEFA Champions League",
+                    match: "Manchester United vs Real Madrid",
+                    icons: {
+                        home: "fas fa-futbol",
+                        away: "fas fa-futbol"
+                    },
+                    bettingOptions: [
+                        "Manchester United to Win (2.50)",
+                    ]
+                },
+                {
+                    date: "18:00 - Sat 24 Aug",
+                    competition: "La Liga",
+                    match: "Barcelona vs Real Madrid",
+                    icons: {
+                        home: "fas fa-futbol",
+                        away: "fas fa-futbol"
+                    },
+                    bettingOptions: [
+                        "Both Teams to Score (1.90)",
+                    ]
+                },
+                {
+                    date: "20:00 - Sat 24 Aug",
+                    competition: "Premier League",
+                    match: "Chelsea vs Fulham",
+                    icons: {
+                        home: "fas fa-futbol",
+                        away: "fas fa-futbol"
+                    },
+                    bettingOptions: [
+                        "Chelsea to Win (1.80)",
+                    ]
+                }
+            ],
+            basketball: [
+                {
+                    date: "00:00 - Sun 25 Aug",
+                    competition: "NBA",
+                    match: "LA Lakers vs Golden State Warriors",
+                    icons: {
+                        home: "fas fa-basketball-ball",
+                        away: "fas fa-basketball-ball"
+                    },
+                    bettingOptions: [
+                        "LeBron James Over 25.5 Points (1.85)"
+                    ]
+                }
+            ],
+            tennis: [
+                {
+                    date: "16:00 - Fri 23 Aug",
+                    competition: "US Open",
+                    match: "Serena Williams vs Naomi Osaka",
+                    icons: {
+                        home: "fas fa-table-tennis",
+                        away: "fas fa-table-tennis"
+                    },
+                    bettingOptions: [
+                        "Match to Go to 3 Sets (2.50)"
+                    ]
+                }
+            ],
+            football: [
+                {
+                    date: "21:30 - Sun 25 Aug",
+                    competition: "NFL",
+                    match: "New England Patriots vs Tampa Bay Buccaneers",
+                    icons: {
+                        home: "fas fa-football-ball",
+                        away: "fas fa-football-ball"
+                    },
+                    bettingOptions: [
+                        "1st Quarter Over 10.5 Points (2.00)"
+                    ]
+                }
+            ]
+        };
+
+        function getTip(sport) {
+            const sportTips = tips[sport];
+            return sportTips.map(tip => {
+                const [homeTeam, awayTeam] = tip.match.split(' vs ');
+
+                let bettingOptionsHTML = tip.bettingOptions.map(option => 
+                    `<span class="bet-option">${option}</span>`
+                ).join('');
+
+                return `
+                    <div class="tip-details">
+                        <div class="competition-info">${tip.date} | ${tip.competition}</div>
+                        <div class="match-info">
+                            <div class="team">
+                                <i class="${tip.icons.home}"></i>
+                                <span class="team-name">${homeTeam}</span>
+                            </div>
+                            <span class="vs">vs</span>
+                            <div class="team">
+                                <i class="${tip.icons.away}"></i>
+                                <span class="team-name">${awayTeam}</span>
+                            </div>
+                        </div>
+                        <div class="betting-options">
+                            ${bettingOptionsHTML}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateTip() {
+            const selectedSport = sportSelect.value;
+            const currentDate = new Date().toLocaleDateString();
+            dateElement.textContent = `Tips for ${currentDate}:`;
+            
+            tipContainer.classList.remove('fade-in');
+            
+            setTimeout(() => {
+                tipElement.innerHTML = getTip(selectedSport);
+                tipContainer.classList.add('fade-in');
+            }, 300);
+        }
+
+        sportSelect.addEventListener('change', updateTip);
+
+        // Initial tip on page load
+        document.addEventListener('DOMContentLoaded', updateTip);
+    </script>
+</body>
+</html>
