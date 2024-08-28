@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Today's Bet Of The Day</title>
+  <style>
+    :root {
+        --primary-color: #3498db; /* Blue */
+        --secondary-color: #2ecc71; /* Green */
+        --background-color: #ecf0f1;
+        --text-color: #2c3e50;
+        --header-background: #3498db; /* Matching blue header color */
+        --bet-option-background: #2ecc71; /* Matching green for bet */
+    }
+
+    /* Reset default margin and padding */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: var(--background-color);
+        margin: 0;
+        padding: 0;
+        color: var(--text-color);
+        height: 100%;
+    }
+
+    /* Container */
+    .container {
+        max-width: 100%;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        background-color: var(--background-color);
+    }
+
+    /* Bet Card */
+    .bet-card {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 100%;
+        max-width: 400px; /* Maximum width on larger screens */
+        margin: 20px; /* Add margin for spacing */
+        text-align: center;
+    }
+
+    .bet-title {
+        font-size: 24px;
+        color: var(--header-background);
+        margin-bottom: 10px;
+    }
+
+    .tipster-info {
+        font-size: 14px;
+        color: var(--text-color);
+        margin-top: 5px;
+    }
+
+    .tipster-name {
+        color: var(--primary-color);
+        font-weight: bold;
+    }
+
+    .tipster-score {
+        color: var(--secondary-color);
+        font-weight: bold;
+    }
+
+    .bet-content {
+        font-size: 18px;
+        margin-top: 20px;
+        color: var(--text-color);
+    }
+
+    .odds {
+        font-size: 24px;
+        color: var(--primary-color);
+        margin-top: 15px;
+    }
+
+    .kickoff-time {
+        font-size: 14px;
+        color: var(--text-color);
+        margin-top: 5px;
+    }
+
+    .show-details {
+        color: var(--primary-color);
+        cursor: pointer;
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 16px;
+    }
+
+    /* Full-Screen Mobile Responsiveness */
+    @media (max-width: 600px) {
+        .container {
+            padding: 10px;
+            min-height: 100vh;
+        }
+
+        .bet-card {
+            width: 100%;
+            height: auto;
+            margin: 0;
+            padding: 20px 15px;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .bet-title {
+            font-size: 22px;
+        }
+
+        .bet-content {
+            font-size: 16px;
+        }
+
+        .odds {
+            font-size: 22px;
+        }
+
+        .kickoff-time, .tipster-info {
+            font-size: 12px;
+        }
+
+        .show-details {
+            font-size: 14px;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="bet-card">
+      <h2 class="bet-title">Today's Bet Of The Day</h2>
+      <div class="tipster-info">
+        <span class="tipster-name">Tipster nozgeegi21</span>
+        <span class="tipster-score">TIP SCORE: EXCELLENT 9.1</span>
+      </div>
+      <p class="bet-content">West Ham United will win the match</p>
+      <p class="odds">Odds: 2.63</p>
+      <p class="kickoff-time">Kick-off Time: 20:00</p>
+      <p class="show-details">Show details for this tip ▼</p>
+    </div>
+  </div>
+</body>
+</html>
