@@ -178,6 +178,37 @@
         .bet-option:hover {
             background-color: #1e8449; /* Darker shade for hover */
         }
+        /* Button Styling */
+    .nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px; /* Adjust the spacing above the buttons */
+    }
+
+    .nav .btn {
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 10px;
+    background-color: #007bff; /* Button background color */
+    color: #ffffff; /* Button text color */
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .nav .btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+    }
+
+    .nav .btn:active {
+    transform: translateY(0); /* Reset lift when clicked */
+    }
+
 
         /* Media query for smaller screens */
         @media only screen and (max-width: 600px) {
@@ -222,6 +253,10 @@
                 <div id="tip"></div>
             </div>
         </div>
+         <div class="nav">
+    <a href="promo.html" class="btn">Promo Page</a>
+    <a href="bet-of-the-day.html" class="btn">Bet of the Day</a>
+</div>
     </div>
 
     <script>
