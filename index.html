@@ -25,6 +25,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            width: 100%;
         }
 
         .container {
@@ -32,15 +33,15 @@
             border-radius: 15px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            width: 90%;
+            width: 100%; /* Adjusted for full-width on smaller screens */
             max-width: 600px;
-            
+            padding: 10px; /* Added padding for better spacing */
         }
 
         header {
             background-color: var(--primary-color);
             color: white;
-            padding: 20px;
+            padding: 15px; /* Reduced padding */
             text-align: center;
         }
 
@@ -51,14 +52,14 @@
         }
 
         .content {
-            padding: 30px;
+            padding: 15px; /* Reduced padding */
         }
 
         #tip-container {
             background-color: #f9f9f9;
             border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 8px; /* Reduced padding */
+            margin-bottom: 8px; /* Reduced margin */
             transition: all 0.3s ease;
             text-align: center;
         }
@@ -103,14 +104,12 @@
         }
 
         .tip-details {
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
+            padding: 10px; /* Reduced padding */
             background: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 8px; /* Reduced margin */
             transition: all 0.3s ease;
-            margin-bottom: 10px;
         }
 
         .tip-details:hover {
@@ -122,7 +121,7 @@
         .match-info {
             display: flex;
             align-items: center;
-             justify-content: space-between;
+            justify-content: space-between;
             margin-bottom: 15px;
         }
 
@@ -145,11 +144,11 @@
         .vs {
             font-size: 16px;
             font-weight: bold;
-            color: #e74c3c; /* Unique color for "vs" */
+            color: #e74c3c;
             margin: 0 10px;
-            text-transform: uppercase; /* Optional: make it uppercase */
-            font-family: 'Arial', sans-serif; /* Ensure consistent font */
-            display: inline-block; /* Make sure it doesn't break line */
+            text-transform: uppercase;
+            font-family: 'Arial', sans-serif;
+            display: inline-block;
             justify-content: center;
         }
 
@@ -170,11 +169,35 @@
             margin-top: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            
         }
 
         .bet-option:hover {
             background-color: #1e8449;
+        }
+
+        /* Media query for smaller screens */
+        @media only screen and (max-width: 600px) {
+            .container {
+                width: 100%;
+                padding: 5px; /* Adjust padding for smaller screens */
+            }
+
+            .content {
+                padding: 10px; /* Adjust padding */
+            }
+
+            .tip-details {
+                padding: 8px; /* Adjust padding */
+            }
+
+            header {
+                padding: 10px; /* Adjust padding */
+            }
+
+            #sport-select {
+                font-size: 14px; /* Adjust font-size */
+                padding: 8px; /* Adjust padding */
+            }
         }
     </style>
 </head>
@@ -280,60 +303,49 @@
                         away: "fas fa-football-ball"
                     },
                     bettingOptions: [
-                        "1st Quarter Over 10.5 Points (2.00)"
+                        "1st Quarter Over 10.5 Points (1.90)"
                     ]
                 }
             ]
         };
 
-        function getTip(sport) {
-            const sportTips = tips[sport];
-            return sportTips.map(tip => {
-                const [homeTeam, awayTeam] = tip.match.split(' vs ');
-
-                let bettingOptionsHTML = tip.bettingOptions.map(option => 
-                    `<span class="bet-option">${option}</span>`
-                ).join('');
-
-                return `
-                    <div class="tip-details">
-                        <div class="competition-info">${tip.date} | ${tip.competition}</div>
-                        <div class="match-info">
-                            <div class="team">
-                                <i class="${tip.icons.home}"></i>
-                                <span class="team-name">${homeTeam}</span>
-                            </div>
-                            <span class="vs">vs</span>
-                            <div class="team">
-                                <i class="${tip.icons.away}"></i>
-                                <span class="team-name">${awayTeam}</span>
-                            </div>
+        function renderTip(tip) {
+            const tipDetails = `
+                <div class="tip-details fade-in">
+                    <div class="match-info">
+                        <div class="team">
+                            <i class="${tip.icons.home}"></i>
+                            <span class="team-name">${tip.match.split(' vs ')[0]}</span>
                         </div>
-                        <div class="betting-options">
-                            ${bettingOptionsHTML}
+                        <span class="vs">vs</span>
+                        <div class="team">
+                            <i class="${tip.icons.away}"></i>
+                            <span class="team-name">${tip.match.split(' vs ')[1]}</span>
                         </div>
                     </div>
-                `;
-            }).join('');
+                    <div class="competition-info">${tip.date} - ${tip.competition}</div>
+                    <div class="bet-option">${tip.bettingOptions[0]}</div>
+                </div>
+            `;
+            return tipDetails;
         }
 
         function updateTip() {
             const selectedSport = sportSelect.value;
-            const currentDate = new Date().toLocaleDateString();
-            dateElement.textContent = `Tips for ${currentDate}:`;
-            
-            tipContainer.classList.remove('fade-in');
-            
-            setTimeout(() => {
-                tipElement.innerHTML = getTip(selectedSport);
-                tipContainer.classList.add('fade-in');
-            }, 300);
+            const selectedTips = tips[selectedSport];
+
+            let tipHTML = '';
+            selectedTips.forEach(tip => {
+                tipHTML += renderTip(tip);
+            });
+
+            tipElement.innerHTML = tipHTML;
         }
 
         sportSelect.addEventListener('change', updateTip);
 
-        // Initial tip on page load
-        document.addEventListener('DOMContentLoaded', updateTip);
+        // Initial render
+        updateTip();
     </script>
 </body>
 </html>
