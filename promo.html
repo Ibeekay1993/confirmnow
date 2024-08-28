@@ -13,6 +13,7 @@
             align-items: center;
             height: 100vh;
             background-color: #f4f4f4;
+            margin: 0;
         }
 
         .container {
@@ -56,6 +57,22 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 5px 15px;
+            background-color: #f4f4f4;
+            color: #2ecc71;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: #27ae60;
+        }
     </style>
 </head>
 
@@ -66,6 +83,9 @@
         <div id="countdown" class="countdown">00:00:00</div>
         <div id="numbers" class="numbers"></div>
         <button id="revealButton" disabled>Reveal Numbers</button>
+        <div
+        <!-- Always Visible Back Link -->
+        <a href="index.html" class="back-link">Back</a>
     </div>
 
     <script>
