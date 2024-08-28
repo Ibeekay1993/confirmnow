@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win ₦5000 Airtime Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #262a31;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .heading {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .countdown {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .numbers {
+            display: none;
+            font-size: 28px;
+            color: #007bff;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="heading">Win ₦5000 Airtime After Countdown</h1>
+        <div id="countdown" class="countdown">00:00:00</div>
+        <div id="numbers" class="numbers"></div>
+        <button id="revealButton" disabled>Reveal Numbers</button>
+    </div>
+
+    <script>
+        // Function to update the countdown
+        function updateCountdown() {
+            // Set the countdown start time (UNIX timestamp in seconds)
+            const startTime = Date.parse("2024-05-07T20:00:00+01:00") / 1000; // Change this to your desired start time
+
+            // Set the countdown duration (in seconds)
+            const countdownDuration = 53300; // 5 minutes
+
+            // Get the current time
+            const currentTime = Math.floor(Date.now() / 1000);
+
+            // Calculate the remaining time
+            let remainingTime = countdownDuration - (currentTime - startTime);
+
+            // Update the countdown every second
+            const countdownInterval = setInterval(function() {
+                // Check if the countdown has ended
+                if (remainingTime <= 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('countdown').innerHTML = "Countdown ended!";
+                    document.getElementById('revealButton').removeAttribute('disabled'); // Enable the reveal button
+                } else {
+                    // Calculate hours, minutes, and seconds
+                    const hours = Math.floor(remainingTime / 3600);
+                    const minutes = Math.floor((remainingTime % 3600) / 60);
+                    const seconds = remainingTime % 60;
+
+                    // Format hours, minutes, and seconds with leading zeros
+                    const formattedHours = String(hours).padStart(2, '0');
+                    const formattedMinutes = String(minutes).padStart(2, '0');
+                    const formattedSeconds = String(seconds).padStart(2, '0');
+
+                    // Display the countdown in the HTML element
+                    document.getElementById('countdown').innerHTML = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+
+                    // Decrease remaining time by 1 second
+                    remainingTime--;
+                }
+            }, 1000);
+        }
+
+        // Call the updateCountdown function when the page loads or is refreshed
+        window.onload = updateCountdown;
+
+        // Function to reveal the numbers
+        document.getElementById('revealButton').addEventListener('click', function() {
+            const numbersElement = document.getElementById('numbers');
+            const numbers = "9876543210987654"; // Replace with your 16-digit number
+
+            // Display the numbers one by one with animation
+            numbersElement.innerHTML = numbers;
+            numbersElement.style.display = "inline"; // Display the numbers
+            this.style.display = "none"; // Hide the reveal button after numbers are revealed
+        });
+    </script>
+
+</body>
+
+</html>
